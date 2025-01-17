@@ -1,0 +1,93 @@
+# Köksglädje Databas Explorer
+
+En Streamlit-applikation för att utforska och analysera data från en SQLite-databas som används av Köksglädje. 
+Applikationen erbjuder användarvänliga funktioner för att lista tabeller, 
+visa data och genomföra enklare analyser och visualiseringar.
+
+## Funktioner
+
+- **Anslutning till SQLite-databas**: Applikationen ansluter till en SQLite-databas (`Köksglädje.db`) med hjälp av SQLAlchemy.
+- **Lista tabeller**: Möjlighet att visa en lista över alla tabeller i databasen.
+- **Visa data från tabeller**: Hämtar och visar data från en vald tabell.
+- **Beskrivande statistik**: Genererar beskrivande statistik för den valda tabellen.
+- **Visualisering**: Skapar stapeldiagram för valda numeriska kolumner.
+
+## Förutsättningar
+
+### Systemkrav
+
+- Python 3.7 eller senare
+- Webbläsare (för att visa Streamlit-applikationen)
+
+### Python-bibliotek
+
+Applikationen kräver följande bibliotek:
+
+- `streamlit`
+- `pandas`
+- `sqlalchemy`
+
+Installera dem genom att köra följande kommando:
+
+```bash
+pip install streamlit 
+pip install pandas
+pip install sqlalchemy
+
+# Databas
+En SQLite-databasfil (Köksglädje.db) måste finnas i samma katalog som Python-skriptet.
+
+# Installation och användning
+    1. Klona eller ladda ner detta repository.
+    2.Navigera till mappen med koden
+        cd path/to/folder
+    3. Starta Streamlit-applikationen
+        streamlit run app.py
+
+Öppna applikationen i din webbläsare 
+(Streamlit genererar en länk, oftast http://localhost:8501).
+
+Användningsinstruktioner
+
+1. Välj en tabell: När databasen har laddats kommer alla tillgängliga tabeller att listas. 
+    Välj en tabell från dropdown-menyn.
+
+2. Visa data: Se data från den valda tabellen i tabellformat.
+
+3. Beskrivande statistik: Generera en sammanfattning av data, 
+    inklusive medelvärde, median, minsta och största värden.
+
+4. Visualisering: Välj en numerisk kolumn från dropdown-menyn för att skapa ett stapeldiagram.
+
+# Felhantering
+
+Om anslutningen till databasen misslyckas visas ett felmeddelande i applikationen.
+
+Om inga tabeller hittas eller data inte kan hämtas visas en varning.
+
+# Utveckling
+    Struktur
+        connect_to_db(): Ansluter till SQLite-databasen.
+        list_tables(): Hämtar en lista över alla tabeller i databasen.
+        fetch_table_data(): Läser data från en specifik tabell och returnerar en DataFrame.
+
+# Förbättringar
+
+    Lägg till stöd för SQL-frågor som kan utföras direkt i applikationen.
+    Implementera exportfunktion för att spara tabulär data till CSV eller Excel.
+    Lägg till fler avancerade visualiseringsalternativ.
+
+# Licens
+Det här projektet är licensierat under MIT-licensen 
+(lägg till en faktisk licensfil om nödvändigt).
+
+Kontakt
+Om du har frågor eller förslag, vänligen kontakta [din e-postadress här].
+
+
+
+
+
+
+
+
