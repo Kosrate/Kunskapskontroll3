@@ -2,8 +2,11 @@ import streamlit as st
 from database_utils import connect_to_db, list_tables, fetch_table_data, update_table_data
 from filtering import apply_filters
 from data_visualization import visualize_data
+from database_utils import fetch_sales_data
+from sales_analysis import analyze_sales
 import sys
 print(sys.path)
+print(analyze_sales)
 
 st.title("Köksglädje Databas Explorer")
 st.write("Den här applikationen låter dig utforska och analysera data från flera tabeller i Köksglädjes SQLite-databas.")
@@ -24,6 +27,18 @@ if engine:
         if not df.empty:
             st.write(f"### Data från tabellen: {selected_table}")
             st.dataframe(df)
+            
+            # Hämta försäljningsdata
+            st.header("Försäljningsdata")
+            sales_data = fetch_sales_data(engine)
+            if not sales_data.empty:
+                st.write("### Försäljningsdata")
+                st.dataframe(sales_data)
+                
+                # Analysera försäljningsdata
+            analyze_sales(sales_data)
+        else:
+            st.warning("Ingen data kunde hämtas från den valda tabellen.")
 
             # Filtrera data
             st.header("3. Filtrera data")

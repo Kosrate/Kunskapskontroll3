@@ -40,3 +40,23 @@ def update_table_data(engine, table_name, df):
     except Exception as e:
         st.error(f"Fel vid uppdatering av tabellen '{table_name}': {e}")
         logging.error(f"Error updating table '{table_name}': {e}")
+
+def fetch_sales_data(engine):
+    query = """
+    SELECT 
+        t.TransactionDate,
+        s.StoreName,
+        p.ProductName,
+        td.Quantity,
+        td.Price,
+        (td.Quantity * td.Price) AS TotalSales
+    FROM Transactions t
+    JOIN TransactionDetails td ON t.TransactionID = td.TransactionID
+    JOIN Products p ON td.ProductID = p.ProductID
+    JOIN Stores s ON t.StoreID = s.StoreID;
+    """
+    try:
+        return pd.read_sql(query, engine)
+    except Exception as e:
+        print(f"Error fetching sales data: {e}")
+        return pd.DataFrame()
