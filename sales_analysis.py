@@ -3,6 +3,9 @@ import streamlit as st
 import matplotlib.pyplot as plt
 
 def analyze_sales(df):
+    if "TransactionDate" not in df.columns:
+        st.error("Försäljningsdata saknar kolumnen 'TransactionDate'.")
+        return
     st.header("Analys av försäljning")
 
     # Konvertera datum till datetime-format

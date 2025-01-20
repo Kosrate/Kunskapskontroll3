@@ -31,14 +31,13 @@ if engine:
             # Hämta försäljningsdata
             st.header("Försäljningsdata")
             sales_data = fetch_sales_data(engine)
+            print("Kolumner i sales_data:", sales_data.columns)
             if not sales_data.empty:
                 st.write("### Försäljningsdata")
                 st.dataframe(sales_data)
                 
                 # Analysera försäljningsdata
             analyze_sales(sales_data)
-        else:
-            st.warning("Ingen data kunde hämtas från den valda tabellen.")
 
             # Filtrera data
             st.header("3. Filtrera data")

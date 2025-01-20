@@ -56,7 +56,9 @@ def fetch_sales_data(engine):
     JOIN Stores s ON t.StoreID = s.StoreID;
     """
     try:
-        return pd.read_sql(query, engine)
+        df = pd.read_sql(query, engine)
+        print("Kolumner i hämtad data:", df.columns)
+        return df
     except Exception as e:
         print(f"Error fetching sales data: {e}")
         return pd.DataFrame()
