@@ -39,6 +39,7 @@ if engine:
                 # Filtrera data
                 st.header("3. Filtrera data")
                 filtered_df = apply_filters(df)
+                st.write("### Filtrerad data")
                 st.dataframe(filtered_df)
 
                 # Enkel analys och visualisering
