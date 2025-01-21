@@ -61,4 +61,4 @@ def fetch_sales_data(engine):
         return df
     except Exception as e:
         print(f"Error fetching sales data: {e}")
-        return pd.DataFrame()
+        return pd.DataFrame()strea
