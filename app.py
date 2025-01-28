@@ -61,3 +61,24 @@ if engine:
         st.warning("Inga tabeller hittades i databasen.")
 else:
     st.error("Kunde inte ansluta till databasen.")
+
+st.markdown('<div class="section"><h2>Försäljningsdata</h2></div>', unsafe_allow_html=True)
+
+sales_data = fetch_sales_data(engine)
+
+if not sales_data.empty:
+    st.markdown('<div class="section"><h3>Sammanställd försäljningsdata</h3></div>', unsafe_allow_html=True)
+    st.dataframe(sales_data)
+
+    # Visa total försäljning per butik
+    st.markdown('<div class="section"><h3>Total försäljning per butik</h3></div>', unsafe_allow_html=True)
+    sales_per_store = sales_data.groupby('StoreName')['TotalSales'].sum().reset_index()
+    st.bar_chart(sales_per_store.set_index('StoreName'))
+
+    # Visa total försäljning per produkt
+    st.markdown('<div class="section"><h3>Total försäljning per produkt</h3></div>', unsafe_allow_html=True)
+    sales_per_product = sales_data.groupby('ProductName')['TotalSales'].sum().reset_index()
+    st.bar_chart(sales_per_product.set_index('ProductName'))
+
+else:
+    st.warning("Ingen försäljningsdata kunde hämtas.")

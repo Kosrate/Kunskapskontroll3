@@ -46,3 +46,17 @@ def visualize_data(df):
         plt.ylabel(y_col)
         plt.grid(True)
         st.pyplot(plt)
+
+def visualize_sales_data(sales_data):
+    """
+    Visualisera försäljningsdata med grafer.
+    """
+    # Visa total försäljning per butik
+    st.markdown('<div class="section"><h3>Total försäljning per butik</h3></div>', unsafe_allow_html=True)
+    sales_per_store = sales_data.groupby('StoreName')['TotalSales'].sum().reset_index()
+    st.bar_chart(sales_per_store.set_index('StoreName'))
+
+    # Visa total försäljning per produkt
+    st.markdown('<div class="section"><h3>Total försäljning per produkt</h3></div>', unsafe_allow_html=True)
+    sales_per_product = sales_data.groupby('ProductName')['TotalSales'].sum().reset_index()
+    st.bar_chart(sales_per_product.set_index('ProductName'))
